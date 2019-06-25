@@ -1,9 +1,9 @@
-package wtf.nuf.exeter.gui.clickapi.overlay;
+package wtf.nuf.exeter.gui.overlay;
 
 import net.minecraft.client.Minecraft;
 import wtf.nuf.exeter.core.Exeter;
 import wtf.nuf.exeter.gui.clickapi.ClickGuiScreen;
-import wtf.nuf.exeter.gui.clickapi.overlay.components.Component;
+import wtf.nuf.exeter.gui.overlay.components.Component;
 import wtf.nuf.exeter.mcapi.interfaces.Toggleable;
 import wtf.nuf.exeter.mcapi.manager.SetManager;
 import wtf.nuf.exeter.mcapi.utilities.minecraft.render.RenderHelper;
@@ -24,7 +24,7 @@ public final class OverlayManager extends SetManager<Component> {
         register(new Component("watermark", 2, 2) {
             @Override
             public void drawComponent(int mouseX, int mouseY) {
-                String watermark = String.format("nuf.wtf b%s", Exeter.CLIENT_BUILD);
+                String watermark = String.format("Exeter b%s", Exeter.CLIENT_BUILD);
                 minecraft.fontRendererObj.drawStringWithShadow(watermark, getPositionX(),
                         getPositionY(), 0xFFFFFFFF);
                 setDiameter(minecraft.fontRendererObj.getStringWidth(watermark) + 2, 12);
@@ -38,6 +38,9 @@ public final class OverlayManager extends SetManager<Component> {
                     if (mod instanceof Toggleable) {
                         ToggleableMod toggleableMod = (ToggleableMod) mod;
                         if (toggleableMod.isEnabled() && toggleableMod.isVisible()) {
+                            // ugly but we do this math so the arraylist displays correctly
+                            // according to the left or right side of the screen and
+                            // the top or button
                             minecraft.fontRendererObj.drawStringWithShadow(toggleableMod.getDisplayLabel(),
                                     positionX > minecraft.getScaledResolution().getScaledWidth() / 2 ? (positionX -
                                             minecraft.fontRendererObj.getStringWidth(toggleableMod.getDisplayLabel()))

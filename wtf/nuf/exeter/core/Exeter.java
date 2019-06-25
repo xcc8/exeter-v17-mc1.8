@@ -7,7 +7,7 @@ import wtf.nuf.exeter.config.Config;
 import wtf.nuf.exeter.config.ConfigManager;
 import wtf.nuf.exeter.friend.FriendManager;
 import wtf.nuf.exeter.gui.clickapi.GuiManager;
-import wtf.nuf.exeter.gui.clickapi.overlay.OverlayManager;
+import wtf.nuf.exeter.gui.overlay.OverlayManager;
 import wtf.nuf.exeter.keybind.KeybindManager;
 import wtf.nuf.exeter.mod.ModManager;
 import wtf.nuf.exeter.printer.Printer;
