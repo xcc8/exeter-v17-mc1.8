@@ -40,7 +40,7 @@ public abstract class Component implements Labeled {
      * @param width
      * @param height
      */
-    protected void setDiameter(int width, int height) {
+    protected void setSize(int width, int height) {
         this.width = width;
         this.height = height;
     }

@@ -20,10 +20,10 @@ public final class ConfigManager extends SetManager<Config> {
         return directory;
     }
 
-    public Config getFile(String label) {
-        for (Config file : getSet()) {
-            if (file.getFile().getName().equalsIgnoreCase(label)) {
-                return file;
+    public Config getConfig(String label) {
+        for (Config config : getSet()) {
+            if (config.getFile().getName().equalsIgnoreCase(label)) {
+                return config;
             }
         }
         return null;

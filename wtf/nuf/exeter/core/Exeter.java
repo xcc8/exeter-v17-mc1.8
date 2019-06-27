@@ -52,10 +52,15 @@ public final class Exeter {
         this.guiManager = new GuiManager();
         this.overlayManager = new OverlayManager();
 
+        // custom display title to show off the 1337 hake and backes
         Display.setTitle(String.format("Minecraft 1.8 (Exeter version-17 build-%s)", CLIENT_BUILD));
 
         this.configManager.getSet().forEach(Config::load);
 
+        // someone told me about this but i don't remember who;
+        // saves you from having to create a shutdown event and
+        // from having an ugly shutdown method in your main class
+        // too easy right?
         Runtime.getRuntime().addShutdownHook(new Thread("exeter_shutdown_thread") {
             @Override
             public void run() {

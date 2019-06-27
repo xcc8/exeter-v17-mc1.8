@@ -27,7 +27,7 @@ public final class OverlayManager extends SetManager<Component> {
                 String watermark = String.format("Exeter b%s", Exeter.CLIENT_BUILD);
                 minecraft.fontRendererObj.drawStringWithShadow(watermark, getPositionX(),
                         getPositionY(), 0xFFFFFFFF);
-                setDiameter(minecraft.fontRendererObj.getStringWidth(watermark) + 2, 12);
+                setSize(minecraft.fontRendererObj.getStringWidth(watermark) + 2, 12);
             }
         });
         register(new Component("arraylist", 2, 12) {
@@ -49,13 +49,13 @@ public final class OverlayManager extends SetManager<Component> {
                         }
                     }
                 }
-                setDiameter(35, 35);
+                setSize(35, 35);
             }
         });
     }
 
     /**
-     * actually drawing of the components and the reset button, loop through the set
+     * actual drawing of the components and the reset button, loop through the set
      * and draw each component; check if the gui screen is the clickgui and if so, then
      * draw the reset button
      *
@@ -74,6 +74,12 @@ public final class OverlayManager extends SetManager<Component> {
         }
     }
 
+    /**
+     * this will be what handles clicking the components, called in ClickGuiScreen.java
+     * @param mouseX
+     * @param mouseY
+     * @param mouseButton
+     */
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         getSet().forEach(component -> component.mouseClicked(mouseX, mouseY, mouseButton));
 
@@ -86,6 +92,10 @@ public final class OverlayManager extends SetManager<Component> {
         }
     }
 
+    /**
+     * what to do when you released the button on your mouse, we just set dragging to false
+     * no matter what
+     */
     public void mouseReleased() {
         getSet().forEach(Component::mouseReleased);
     }

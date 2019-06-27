@@ -17,6 +17,7 @@ public final class ModManager extends ListManager<Mod> {
         register(new NoFall());
         register(new Statics());
 
+        // java 8 SORTING
         getList().sort(Comparator.comparing(Mod::getLabel));
     }
 

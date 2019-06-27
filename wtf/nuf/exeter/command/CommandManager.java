@@ -5,6 +5,9 @@ import wtf.nuf.exeter.command.impl.client.Toggle;
 import wtf.nuf.exeter.mcapi.manager.ListManager;
 
 public final class CommandManager extends ListManager<Command> {
+    /**
+     * add the commands to the list here
+     */
     public CommandManager() {
         register(new Toggle());
         register(new Help());

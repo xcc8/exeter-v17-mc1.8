@@ -24,8 +24,8 @@ public final class GuiManager extends SetManager<PanelComponent> {
             @Override
             public void load() {//TODO this
                 try {
-                    if (!getFile().exists()) {
-                        getFile().createNewFile();
+                    if (!getConfig().exists()) {
+                        getConfig().createNewFile();
                     }
                 } catch (IOException exception) {
                     exception.printStackTrace();;
@@ -35,8 +35,8 @@ public final class GuiManager extends SetManager<PanelComponent> {
             @Override
             public void save() {
                 try {
-                    if (!getFile().exists()) {
-                        getFile().createNewFile();
+                    if (!getConfig().exists()) {
+                        getConfig().createNewFile();
                     }
                 } catch (IOException exception) {
                     exception.printStackTrace();;

@@ -16,12 +16,18 @@ public final class Toggle extends Command {
 
     @Override
     public String execute() {
+        // create a local mod instance using the getMod method from the mod manager
+        // we use the argument for the mod name
         Mod mod = exeter.getModManager().getMod(getArgument("<mod>").getValue());
+        // if the mod doesn't exist or it is not toggleable then inform the user
         if (mod == null || !(mod instanceof Toggleable)) {
             return "Mod does not exist or is not toggleable.";
         }
+        // create a toggleable mod
         ToggleableMod toggleableMod = (ToggleableMod) mod;
+        // toggle the mod
         toggleableMod.toggle();
+        // send the user an informative message about the state of the mod
         return String.format("%s toggled %s%s%s.", toggleableMod.getLabel(),
                 toggleableMod.isEnabled() ? EnumChatFormatting.GREEN : EnumChatFormatting.RED,
                 toggleableMod.isEnabled() ? "on" : "off", EnumChatFormatting.GRAY);

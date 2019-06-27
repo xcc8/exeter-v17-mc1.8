@@ -47,8 +47,10 @@ public final class KillAura extends ToggleableMod {
 
     private final Random random = new Random();
 
+    // list of verified targets
     private final List<Entity> targets = new CopyOnWriteArrayList<>();
 
+    // current target
     private Entity target = null;
 
     public KillAura() {
@@ -70,11 +72,15 @@ public final class KillAura extends ToggleableMod {
      */
     @Listener
     public void onMotionUpdate(MotionUpdateEvent event) {
+        // make sure we can actually 'kill aura'
         if (minecraft.thePlayer.isDead || minecraft.playerController.isSpectatorMode()) {
             return;
         }
         switch (event.getState()) {
+            // aim here
             case BEFORE:
+                // if the mode is set to trigger that's all we want to do
+                // fuck everything else
                 if (mode.getValue() == Mode.TRIGGER) {
                     this.triggerbot();
                     return;
@@ -82,41 +88,63 @@ public final class KillAura extends ToggleableMod {
 
                 setDisplayLabel("Kill Aura");
 
+                // check if we should even add targets to our list, i.e. we have none or we have less
+                // then the game has to offer
                 if (targets.isEmpty() || targets.size() < minecraft.theWorld.loadedEntityList.size()) {
                     populateTargets();
                 }
 
+                // check all targets to make sure they're still targettable
                 verifyTargets();
 
+                // if have none after checking them then don't do shit
                 if (targets.isEmpty()) {
                     return;
                 }
 
+                // we'll just get the first target off the list and make that our main
                 target = targets.get(0);
 
+                // make sure it's valid before we target it, if it's not then set it to null,
+                // remove it and don't do anything else
                 if (!isValidTarget(target)) {
+                    targets.remove(target);
                     target = null;
                     return;
                 }
 
+                // using the rotate task we'll target the entity
                 rotateTask.targetEntity(event, target, silent.isEnabled());
                 break;
+                // attack here
             case AFTER:
+                // again make sure it's valid
                 if (isValidTarget(target)) {
+                    // if our attack delay has surpassed
                     if (hasReachedAttackDelay()) {
+                        // attack the target
                         attackTask.attackEntity(target);
+                        // we do other stuff of the mode is switch aura
                         if (mode.getValue() == Mode.SWITCH) {
+                            // if we have less than two targets and we don't reset our
+                            // stopwatch then nocheat will flag us
                             if (targets.size() < 2) {
+                                // reset the stopwatch
                                 stopwatch.reset();
                             } else {
+                                // remove the target and set it to null without
+                                // resetting our attack delay
                                 targets.remove(target);
                                 target = null;
                             }
                         } else {
+                            // else just reset the stopwatch, i.e. single aura
                             stopwatch.reset();
                         }
                     }
                 } else {
+                    // if the target isn't valid reset the stopwatch, remove the target, set the target
+                    // to null
                     stopwatch.reset();
                     targets.remove(target);
                     target = null;
@@ -129,8 +157,10 @@ public final class KillAura extends ToggleableMod {
      * collects entities within your reach and verifies they can be targeted and adds them to our target list
      */
     private void populateTargets() {
+        // java 8! add all entities from the world to our targets list if they're valid targets
         minecraft.theWorld.loadedEntityList.stream().filter(entity -> isValidTarget((Entity) entity)).
                 forEach(entity -> targets.add((Entity) entity));
+        // verify them after we add them
         verifyTargets();
     }
 
@@ -138,6 +168,7 @@ public final class KillAura extends ToggleableMod {
      * verifies the targets in our list are still able to be targeted because things change
      */
     private void verifyTargets() {
+        // make sure our targets are valid else remove them
         targets.stream().filter(target -> !isValidTarget(target)).forEach(target -> targets.remove(target));
     }
 
@@ -163,17 +194,25 @@ public final class KillAura extends ToggleableMod {
      */
     private void triggerbot() {
         setDisplayLabel("Triggerbot");
+        // make sure our mouse over something, preferably an entity
         if (minecraft.objectMouseOver != null && minecraft.objectMouseOver.typeOfHit ==
                 MovingObjectPosition.MovingObjectType.ENTITY) {
+            // get that entity
             Entity entity = minecraft.objectMouseOver.entityHit;
+            // make sure it's valid and that we are ingame
             if (isValidTarget(entity) && minecraft.currentScreen == null) {
+                // make sure we can attack
                 if (hasReachedAttackDelay()) {
                     if (realClicks.isEnabled()) {
+                        // if the user wants real clicks then we produce real clicks
                         KeyBinding.setKeyBindState(-100, true);
                         KeyBinding.onTick(-100);
                     } else {
+                        // otherwise we'll just send an attack packet which is very fishy
+                        // because packets are queued
                         attackTask.attackEntity(entity);
                     }
+                    // reset the stopwatch
                     stopwatch.reset();
                 } else {
                     if (realClicks.isEnabled()) {
@@ -196,6 +235,7 @@ public final class KillAura extends ToggleableMod {
         if (!(entity instanceof EntityLivingBase)) {
             return false;
         }
+        // make sure the entity is within our designated reach
         if (minecraft.thePlayer.getDistanceToEntity(entity) > range.getValue()) {
             return false;
         }
@@ -205,6 +245,7 @@ public final class KillAura extends ToggleableMod {
         if (!minecraft.thePlayer.canEntityBeSeen(entity) && !rayTrace.isEnabled()) {
             return false;
         }
+        // check if the player is a teammate and if they're a client-side friend
         if (entity instanceof EntityPlayer) {
             if (exeter.getSettings().protectTeam.isEnabled() && minecraft.thePlayer.isOnSameTeam((EntityLivingBase) entity)) {
                 return false;

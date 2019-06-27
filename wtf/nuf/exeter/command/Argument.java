@@ -24,6 +24,13 @@ public class Argument implements Labeled {
         this.value = value;
     }
 
+    /**
+     *
+     * @return whether or not the argument is present
+     * i.e. in the toggle command there is one argument, the mod
+     * so if you do '.t' and you don't entire a mod name then
+     * the argument will be flagged !present
+     */
     public boolean isPresent() {
         return present;
     }

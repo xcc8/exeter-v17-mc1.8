@@ -43,7 +43,7 @@ public class GuiAccountScreen extends GuiScreen {
     @Override
     public void handleMouseInput() throws IOException {
         super.handleMouseInput();
-        guiAccountSlot.func_178039_p();
+        guiAccountSlot.handleMouseInput();
     }
 
     @Override
@@ -130,7 +130,7 @@ public class GuiAccountScreen extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        Exeter.getInstance().getConfigManager().getFile("accounts.txt").save();
+        Exeter.getInstance().getConfigManager().getConfig("accounts.txt").save();
     }
 
     public GuiAccountSlot getAccountSlot() {
@@ -164,7 +164,7 @@ public class GuiAccountScreen extends GuiScreen {
                         stringBuilder.append(String.format("%s:%s\n", account.getLabel(), account.getPassword()));
                     }
                     BufferedWriter writer = new BufferedWriter(new FileWriter(Exeter.getInstance().
-                            getConfigManager().getFile("accounts.txt").getFile()));
+                            getConfigManager().getConfig("accounts.txt").getFile()));
                     writer.write(stringBuilder.toString());
                     writer.close();
                 } catch (IOException exception) {

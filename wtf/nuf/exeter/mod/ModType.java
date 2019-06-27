@@ -5,7 +5,8 @@ public enum ModType {
     EXPLOITS("Exploits"),
     MOVEMENT("Movement"),
     MISCELLANEOUS("Miscellaneous"),
-    RENDER("Render");
+    RENDER("Render"),
+    WORLD("WORLD");
 
     private final String label;
 

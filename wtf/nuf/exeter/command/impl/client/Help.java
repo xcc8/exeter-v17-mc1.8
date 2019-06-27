@@ -10,6 +10,9 @@ import wtf.nuf.exeter.mod.ToggleableMod;
 
 import java.util.StringJoiner;
 
+/**
+ * over-complicated help command
+ */
 @CommandValues(aliases = {"help", "?"})
 public final class Help extends Command {
     public Help() {

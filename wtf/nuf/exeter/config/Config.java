@@ -3,12 +3,13 @@ package wtf.nuf.exeter.config;
 import wtf.nuf.exeter.core.Exeter;
 import wtf.nuf.exeter.printer.Printer;
 
+import java.io.File;
 import java.io.IOException;
 
 public abstract class Config {
-    private final java.io.File file;
+    private final File file;
 
-    public Config(java.io.File file) {
+    public Config(File file) {
         this.file = file;
         Exeter.getInstance().getConfigManager().register(this);
         if (!file.exists()) {
@@ -23,7 +24,7 @@ public abstract class Config {
         Printer.getPrinter().print(String.format("Registered new file \"%s\".", file.getName()));
     }
 
-    public java.io.File getFile() {
+    public File getFile() {
         return file;
     }
 

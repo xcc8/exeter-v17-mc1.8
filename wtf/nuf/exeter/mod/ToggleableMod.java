@@ -24,9 +24,11 @@ public class ToggleableMod extends Mod implements Toggleable {
     public void setEnabled(boolean flag) {
         this.enabled = flag;
         if (this.enabled) {
+            // listen for events
             EventManager.getInstance().register(this);
             onEnable();
         } else {
+            // stop listening for events
             EventManager.getInstance().unregister(this);
             onDisable();
         }
@@ -41,7 +43,7 @@ public class ToggleableMod extends Mod implements Toggleable {
         return displayLabel;
     }
 
-    public void setDisplayLabel(String displayLabel) {
+    protected void setDisplayLabel(String displayLabel) {
         this.displayLabel = displayLabel;
     }
 

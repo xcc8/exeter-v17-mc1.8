@@ -56,8 +56,8 @@ public final class ClickGuiScreen extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        //client.fileManager.getFile("gui_config.json").save();
-        //client.fileManager.getFile("overlay_config.json").save();
+        //client.fileManager.getConfig("gui_config.json").save();
+        //client.fileManager.getConfig("overlay_config.json").save();
     }
 
     @Override
