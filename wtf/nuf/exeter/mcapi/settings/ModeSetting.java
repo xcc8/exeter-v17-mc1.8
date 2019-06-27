@@ -34,6 +34,32 @@ public class ModeSetting extends Setting {
         return null;
     }
 
+    public void increment() {
+        Enum[] array;
+        for (int length = (array = ((Enum) getValue()).getClass().getEnumConstants()).length, index = 0; index < length; index++) {
+            if (array[index].name().equalsIgnoreCase(getValue().name())) {
+                index++;
+                if (index > array.length - 1) {
+                    index = 0;
+                }
+                setValue(array[index]);
+            }
+        }
+    }
+
+    public void decrement() {
+        Enum[] array;
+        for (int length = (array = ((Enum) getValue()).getClass().getEnumConstants()).length, index = 0; index < length; index++) {
+            if (array[index].name().equalsIgnoreCase(getValue().name())) {
+                index--;
+                if (index < 0) {
+                    index = array.length - 1;
+                }
+                setValue(array[index]);
+            }
+        }
+    }
+
     public Enum[] getModes() {
         return modes;
     }

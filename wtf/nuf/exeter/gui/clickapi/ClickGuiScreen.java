@@ -2,7 +2,7 @@ package wtf.nuf.exeter.gui.clickapi;
 
 import net.minecraft.client.gui.GuiScreen;
 import wtf.nuf.exeter.core.Exeter;
-import wtf.nuf.exeter.gui.clickapi.components.buttons.ModButtonComponent;
+import wtf.nuf.exeter.gui.clickapi.components.buttons.ModComponent;
 import wtf.nuf.exeter.gui.clickapi.components.panels.PanelComponent;
 import wtf.nuf.exeter.mod.Mod;
 import wtf.nuf.exeter.mod.ModType;
@@ -10,6 +10,7 @@ import wtf.nuf.exeter.mod.ModType;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 
 public final class ClickGuiScreen extends GuiScreen {
     private final List<PanelComponent> panels = new CopyOnWriteArrayList<>();
@@ -22,12 +23,12 @@ public final class ClickGuiScreen extends GuiScreen {
                 public void registerComponents() {
                     for (Mod mod : Exeter.getInstance().getModManager().getList()) {
                         if (mod.getModType().equals(modType)) {
-                            getComponents().add(new ModButtonComponent(mod, mod.getLabel(), getPositionX(), getPositionY(), 100, 20));
+                            getComponents().add(new ModComponent(mod, mod.getLabel(), getPositionX(), getPositionY(), 100, 20));
                         }
                     }
                 }
             });
-            positionX += 112;
+            positionX += 104;
         }
     }
 

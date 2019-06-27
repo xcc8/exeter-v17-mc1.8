@@ -35,7 +35,7 @@ public final class KillAura extends ToggleableMod {
     private final ToggleableSetting realClicks = new ToggleableSetting("Real-Clicks", new String[]{"real-clicks", "realclicks", "clicks"}, false);
     private final ToggleableSetting randomSpeed = new ToggleableSetting("Random Speed", new String[]{"randomspeed", "random", "rs"}, false);
 
-    private final ValueSetting<Integer> aps = new ValueSetting<>("Attacks per second", new String[]{"attackspersecond", "attacks", "aps"}, 10, 1, 20);
+    private final ValueSetting<Integer> aps = new ValueSetting<>("APS", new String[]{"attackspersecond", "attacks", "aps"}, 10, 1, 20);
     private final ValueSetting<Double> range = new ValueSetting<>("Range", new String[]{"range"}, 4D, 3D, 5.5D);
 
     private final ModeSetting mode = new ModeSetting("Mode", new String[]{"mode", "m"}, Mode.SWITCH, Mode.values());

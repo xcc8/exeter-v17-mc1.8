@@ -18,11 +18,17 @@ public abstract class PanelComponent extends Component {
 
     @Override
     public void onClicked(int mouseX, int mouseY, int mouseButton) {
-        if (mouseButton == 0 && isHovering(mouseX, mouseY, 20)) {
-            setDragging(true);
-            setDraggingPositionX(getPositionX() - mouseX);
-            setDraggingPositionY(getPositionY() - mouseY);
-            return;
+        if (isHovering(mouseX, mouseY, 20)) {
+            switch (mouseButton) {
+                case 0:
+                    setDragging(true);
+                    setDraggingPositionX(getPositionX() - mouseX);
+                    setDraggingPositionY(getPositionY() - mouseY);
+                    break;
+                case 1:
+                    this.open = !open;
+                    break;
+            }
         }
         components.forEach(component -> component.onClicked(mouseX, mouseY, mouseButton));
     }
@@ -35,7 +41,7 @@ public abstract class PanelComponent extends Component {
             //TODO colliding math, make panels not collide; maybe alignment lines
         }
         drawBorderedRectReliant(getPositionX(), getPositionY(), getPositionX() + getWidth(),
-                getPositionY() + (!open ? getHeight() : getHeight() + components.size() * 20), 1.7F,
+                getPositionY() + (open ? getHeight() : 20), 1.7F,
                 Colors.PANEL_INSIDE.getColor(), Colors.PANEL_BORDER.getColor());
         font.drawString(getLabel(), getPositionX() + 2, getPositionY() + 1, Colors.PANEL_LABEL.getColor());
         if (open) {
@@ -47,6 +53,15 @@ public abstract class PanelComponent extends Component {
                 componentPositionY += component.getHeight();
             }
         }
+    }
+
+    @Override
+    public int getHeight() {
+        int height = 20;
+        for (Component component : components) {
+            height += component.getHeight();
+        }
+        return height;
     }
 
     public void mouseReleased() {
