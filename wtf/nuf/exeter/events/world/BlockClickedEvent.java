@@ -1,4 +1,4 @@
-package wtf.nuf.exeter.events;
+package wtf.nuf.exeter.events.world;
 
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;

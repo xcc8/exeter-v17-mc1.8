@@ -1,4 +1,4 @@
-package wtf.nuf.exeter.events;
+package wtf.nuf.exeter.events.render;
 
 import wtf.nuf.exeter.mcapi.eventsystem.Event;
 

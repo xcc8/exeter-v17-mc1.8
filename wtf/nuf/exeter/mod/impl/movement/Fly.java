@@ -1,7 +1,7 @@
 package wtf.nuf.exeter.mod.impl.movement;
 
-import wtf.nuf.exeter.events.MotionUpdateEvent;
-import wtf.nuf.exeter.events.MoveEntityEvent;
+import wtf.nuf.exeter.events.movement.MotionUpdateEvent;
+import wtf.nuf.exeter.events.movement.MoveEntityEvent;
 import wtf.nuf.exeter.mcapi.eventsystem.Listener;
 import wtf.nuf.exeter.mcapi.settings.ValueSetting;
 import wtf.nuf.exeter.mod.ModType;

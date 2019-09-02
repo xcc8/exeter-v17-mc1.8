@@ -1,7 +1,7 @@
 package wtf.nuf.exeter.keybind;
 
 import org.lwjgl.input.Keyboard;
-import wtf.nuf.exeter.events.InputEvent;
+import wtf.nuf.exeter.events.system.InputEvent;
 import wtf.nuf.exeter.mcapi.eventsystem.EventManager;
 import wtf.nuf.exeter.mcapi.eventsystem.Listener;
 import wtf.nuf.exeter.mcapi.manager.SetManager;

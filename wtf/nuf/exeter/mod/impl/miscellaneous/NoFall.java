@@ -1,6 +1,6 @@
 package wtf.nuf.exeter.mod.impl.miscellaneous;
 
-import wtf.nuf.exeter.events.MotionUpdateEvent;
+import wtf.nuf.exeter.events.movement.MotionUpdateEvent;
 import wtf.nuf.exeter.mcapi.eventsystem.Listener;
 import wtf.nuf.exeter.mod.ModType;
 import wtf.nuf.exeter.mod.ModValues;

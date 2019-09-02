@@ -43,7 +43,7 @@ public abstract class PanelComponent extends Component {
         drawBorderedRectReliant(getPositionX(), getPositionY(), getPositionX() + getWidth(),
                 getPositionY() + (open ? getHeight() : 20), 1.7F,
                 Colors.PANEL_INSIDE.getColor(), Colors.PANEL_BORDER.getColor());
-        font.drawString(getLabel(), getPositionX() + 2, getPositionY() + 1, Colors.PANEL_LABEL.getColor());
+        font.drawString(getLabel(), getPositionX() + 4, getPositionY() + 1, Colors.PANEL_LABEL.getColor());
         if (open) {
             int componentPositionY = getPositionY() + 20;
             for (Component component : components) {

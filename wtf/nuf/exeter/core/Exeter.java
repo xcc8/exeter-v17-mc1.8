@@ -58,7 +58,7 @@ public final class Exeter {
         this.configManager.getSet().forEach(Config::load);
 
         // someone told me about this but i don't remember who;
-        // saves you from having to create a shutdown event and
+        // saves you from having to create a shutdown event or
         // from having an ugly shutdown method in your main class
         // too easy right?
         Runtime.getRuntime().addShutdownHook(new Thread("exeter_shutdown_thread") {

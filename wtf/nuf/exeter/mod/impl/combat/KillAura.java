@@ -13,7 +13,7 @@ import wtf.nuf.exeter.mcapi.settings.ToggleableSetting;
 import wtf.nuf.exeter.mcapi.settings.ValueSetting;
 import wtf.nuf.exeter.mcapi.stopwatch.Stopwatch;
 import wtf.nuf.exeter.core.Exeter;
-import wtf.nuf.exeter.events.MotionUpdateEvent;
+import wtf.nuf.exeter.events.movement.MotionUpdateEvent;
 import wtf.nuf.exeter.mod.ModType;
 import wtf.nuf.exeter.mod.ModValues;
 import wtf.nuf.exeter.mod.ToggleableMod;
@@ -126,21 +126,12 @@ public final class KillAura extends ToggleableMod {
                         attackTask.attackEntity(target);
                         // we do other stuff of the mode is switch aura
                         if (mode.getValue() == Mode.SWITCH) {
-                            // if we have less than two targets and we don't reset our
-                            // stopwatch then nocheat will flag us
-                            if (targets.size() < 2) {
-                                // reset the stopwatch
-                                stopwatch.reset();
-                            } else {
-                                // remove the target and set it to null without
-                                // resetting our attack delay
-                                targets.remove(target);
-                                target = null;
-                            }
-                        } else {
-                            // else just reset the stopwatch, i.e. single aura
-                            stopwatch.reset();
+                            // remove the target
+                            targets.remove(target);
+                            target = null;
                         }
+                        // reset our attack delay
+                        stopwatch.reset();
                     }
                 } else {
                     // if the target isn't valid reset the stopwatch, remove the target, set the target
@@ -250,7 +241,8 @@ public final class KillAura extends ToggleableMod {
             if (exeter.getSettings().protectTeam.isEnabled() && minecraft.thePlayer.isOnSameTeam((EntityLivingBase) entity)) {
                 return false;
             }
-            return exeter.getSettings().attackPlayers.isEnabled() && !Exeter.getInstance().getFriendManager().isFriend(entity.getName());
+            return exeter.getSettings().attackPlayers.isEnabled() && (!exeter.getSettings().friends.isEnabled() ||
+                    !Exeter.getInstance().getFriendManager().isFriend(entity.getName()));
         }
         if (entity instanceof EntityAnimal) {
             return exeter.getSettings().attackPassives.isEnabled();

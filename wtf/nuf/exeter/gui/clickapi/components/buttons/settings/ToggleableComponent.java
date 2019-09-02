@@ -24,7 +24,7 @@ public class ToggleableComponent extends Component {
         drawRect(getPositionX() + 1, getPositionY() + 1, getPositionX() + getWidth() - 1,
                 getPositionY() + getHeight() - 1, toggleableSetting.isEnabled() ?
                         Colors.BUTTON_ENABLED.getColor() : Colors.BUTTON.getColor());
-        font.drawString(getLabel(), getPositionX() + 2, getPositionY() + 1, toggleableSetting.isEnabled() ?
+        font.drawString(getLabel(), getPositionX() + 4, getPositionY() + 1, toggleableSetting.isEnabled() ?
                 Colors.BUTTON_LABEL_ENABLED.getColor() : Colors.BUTTON_LABEL.getColor());
     }
 }

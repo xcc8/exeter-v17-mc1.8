@@ -65,13 +65,16 @@ public class ModComponent extends Component {
                     getPositionY() + 19, 1.7F, toggleableMod.isEnabled() ?
                             Colors.BUTTON_ENABLED.getColor() : Colors.BUTTON.getColor(),
                     Colors.PANEL_BORDER.getColor());
-            font.drawString(getLabel(), getPositionX() + 2, getPositionY() + 1, toggleableMod.isEnabled() ?
+            font.drawString(getLabel(), getPositionX() + 4, getPositionY() + 1, toggleableMod.isEnabled() ?
                     Colors.BUTTON_LABEL_ENABLED.getColor() : Colors.BUTTON_LABEL.getColor());
         } else {
             drawBorderedRectReliant(getPositionX() + 1, getPositionY() + 1, getPositionX() + getWidth() - 1,
                     getPositionY() + 19, 1.7F, Colors.BUTTON.getColor(),
                     Colors.PANEL_BORDER.getColor());
-            font.drawString(getLabel(), getPositionX() + 2, getPositionY() + 1, Colors.BUTTON_LABEL.getColor());
+            font.drawString(getLabel(), getPositionX() + 4, getPositionY() + 1, Colors.BUTTON_LABEL.getColor());
+        }
+        if (components.size() > 0) {
+            font.drawString("...", getPositionX() + getWidth() - 13, getPositionY() - 1, Colors.BUTTON_LABEL.getColor());
         }
         setHeight(!open ? 20 : 20 + components.size() * 20);
         if (open) {

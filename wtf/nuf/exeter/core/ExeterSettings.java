@@ -19,6 +19,8 @@ public final class ExeterSettings extends SetManager<Setting> {//TODO maybe ttf 
             new String[]{"invisibles", "invisible"}, true);
     public final ToggleableSetting protectTeam = new ToggleableSetting("Team",
             new String[]{"team", "t"}, false);
+    public final ToggleableSetting friends = new ToggleableSetting("Friends",
+            new String[]{"friends", "friend", "fr"}, true);
 
     public final StringSetting commandPrefix = new StringSetting("Prefix",
             new String[]{"prefix", "pref", "p"}, ".");
@@ -27,22 +29,13 @@ public final class ExeterSettings extends SetManager<Setting> {//TODO maybe ttf 
      * just add settings here so when the instance is set in the main class they're registered
      */
     public ExeterSettings() {
-        add(attackPlayers,
-                attackPassives,
-                attackHostiles,
-                attackInvisibles,
-                protectTeam,
-                commandPrefix);
-    }
+        register(attackPlayers);
+        register(attackPassives);
+        register(attackHostiles);
+        register(attackInvisibles);
+        register(protectTeam);
+        register(friends);
 
-    /**
-     * why not?
-     *
-     * @param settings
-     */
-    private void add(Setting... settings) {
-        for (Setting setting : settings) {
-            register(setting);
-        }
+        register(commandPrefix);
     }
 }

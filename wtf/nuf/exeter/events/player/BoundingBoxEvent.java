@@ -1,4 +1,4 @@
-package wtf.nuf.exeter.events;
+package wtf.nuf.exeter.events.player;
 
 import net.minecraft.util.AxisAlignedBB;
 import wtf.nuf.exeter.mcapi.eventsystem.Event;

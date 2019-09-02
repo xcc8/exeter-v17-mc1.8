@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import wtf.nuf.exeter.mcapi.utilities.minecraft.RotationHelper;
-import wtf.nuf.exeter.events.MotionUpdateEvent;
+import wtf.nuf.exeter.events.movement.MotionUpdateEvent;
 import wtf.nuf.exeter.task.Task;
 
 public class RotateTask extends Task {

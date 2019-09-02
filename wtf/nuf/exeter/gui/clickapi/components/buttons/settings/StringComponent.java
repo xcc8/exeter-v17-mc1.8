@@ -21,7 +21,7 @@ public class StringComponent extends Component {
     public void drawComponent(int mouseX, int mouseY) {
         drawRect(getPositionX() + 1, getPositionY() + 1, getPositionX() + getWidth() - 1,
                 getPositionY() + getHeight() - 1, Colors.BUTTON.getColor());
-        font.drawString(String.format("%s (\"%s\")", getLabel(), stringSetting.getValue()), getPositionX() + 2,
+        font.drawString(String.format("%s (\"%s\")", getLabel(), stringSetting.getValue()), getPositionX() + 4,
                 getPositionY() + 1, Colors.BUTTON_LABEL_ENABLED.getColor());
     }
 }

@@ -1,8 +1,8 @@
 package wtf.nuf.exeter.mod.impl.movement;
 
-import wtf.nuf.exeter.events.SprintingAttackEvent;
+import wtf.nuf.exeter.events.movement.SprintingAttackEvent;
 import wtf.nuf.exeter.mcapi.eventsystem.Listener;
-import wtf.nuf.exeter.events.MotionUpdateEvent;
+import wtf.nuf.exeter.events.movement.MotionUpdateEvent;
 import wtf.nuf.exeter.mcapi.settings.ToggleableSetting;
 import wtf.nuf.exeter.mod.ModType;
 import wtf.nuf.exeter.mod.ModValues;
